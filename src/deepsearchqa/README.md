@@ -137,7 +137,7 @@ Oracle: 900/900 tasks at `reward` = 1.0, 0 exceptions (`harbor run -c src/deepse
 Links:
 - Original benchmark: https://www.kaggle.com/benchmarks/google/dsqa/leaderboard
 - Dataset: https://huggingface.co/datasets/google/deepsearchqa
-- Adapter PR: TBD
+- Adapter PR: https://github.com/harbor-framework/adapters/pull/127
 - Dataset PR: TBD
 - Parity experiment PR: TBD
 
