@@ -132,7 +132,7 @@ Parity has not been run yet. The plan (agents, model, number of runs, subset siz
 |-------|-------|--------|----------------|--------------|--------------------------------|----------------------------|
 | TBD | TBD | F1 | TBD | TBD | TBD | TBD |
 
-Oracle: expected 100% (`reward` = 1.0) on all 900 tasks — to be confirmed with `harbor run -c src/deepsearchqa/run_deepsearchqa.yaml` before the WIP PR.
+Oracle: 900/900 tasks at `reward` = 1.0, 0 exceptions (`harbor run -c src/deepsearchqa/run_deepsearchqa.yaml`, harbor 0.25.0). Note that every oracle trial is graded via the exact-match shortcut, so the oracle run does not exercise the LLM autorater.
 
 Links:
 - Original benchmark: https://www.kaggle.com/benchmarks/google/dsqa/leaderboard
