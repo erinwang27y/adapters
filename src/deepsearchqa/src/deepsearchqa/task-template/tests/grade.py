@@ -189,6 +189,22 @@ def _post_json(url: str, payload: dict, headers: dict[str, str]) -> dict:
         return json.loads(resp.read().decode("utf-8"))
 
 
+def _optional_judge_params() -> dict:
+    """Sampling parameters for OpenAI-compatible judges, sent only when set.
+
+    Unset (the default), the request carries no sampling parameters, exactly as
+    before. Parity runs set them so both sides send identical judge requests.
+    """
+    params: dict = {}
+    if value := os.environ.get("DSQA_JUDGE_TEMPERATURE", "").strip():
+        params["temperature"] = float(value)
+    if value := os.environ.get("DSQA_JUDGE_MAX_TOKENS", "").strip():
+        params["max_tokens"] = int(value)
+    if value := os.environ.get("DSQA_JUDGE_REASONING_EFFORT", "").strip():
+        params["reasoning_effort"] = value
+    return params
+
+
 def _judge_provider(model: str) -> str:
     explicit = os.environ.get("JUDGE_PROVIDER", "").strip().lower()
     if explicit:
@@ -223,9 +239,11 @@ def call_judge(prompt: str, model: str) -> str:
         if not key:
             raise JudgeError("OPENAI_API_KEY is not set")
         base = (os.environ.get("OPENAI_BASE_URL") or "https://api.openai.com/v1").rstrip("/")
+        payload = {"model": bare_model, "messages": [{"role": "user", "content": prompt}]}
+        payload.update(_optional_judge_params())
         data = _post_json(
             f"{base}/chat/completions",
-            {"model": bare_model, "messages": [{"role": "user", "content": prompt}]},
+            payload,
             {"Authorization": f"Bearer {key}"},
         )
         try:
@@ -276,6 +294,7 @@ def main() -> int:
         "gold_answer": gold,
         "response": response,
         "judge_model": model,
+        "judge_params": _optional_judge_params(),
     }
 
     if not response:

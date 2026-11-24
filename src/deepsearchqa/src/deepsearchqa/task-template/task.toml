@@ -27,7 +27,9 @@ category = "deep-research"
 timeout_sec = 3600.0
 
 [verifier]
-timeout_sec = 600.0
+# Covers the judge's worst case: DSQA_JUDGE_MAX_ATTEMPTS (4) x DSQA_JUDGE_HTTP_TIMEOUT
+# (up to 600 s when raised for slow judge endpoints) plus retry backoff.
+timeout_sec = 3000.0
 
 [verifier.env]
 # Official autorater is Gemini 2.5 Flash. Set JUDGE_MODEL to an OpenAI model
@@ -36,6 +38,14 @@ GEMINI_API_KEY = "${GEMINI_API_KEY:-}"
 OPENAI_API_KEY = "${OPENAI_API_KEY:-}"
 OPENAI_BASE_URL = "${OPENAI_BASE_URL:-}"
 JUDGE_MODEL = "${DSQA_JUDGE_MODEL:-gemini-2.5-flash}"
+# Set DSQA_EXACT_MATCH_SHORTCUT=0 to send every response to the judge (used for parity).
+DSQA_EXACT_MATCH_SHORTCUT = "${DSQA_EXACT_MATCH_SHORTCUT:-1}"
+# Per-request judge HTTP timeout in seconds (raise for slow judge endpoints).
+DSQA_JUDGE_HTTP_TIMEOUT = "${DSQA_JUDGE_HTTP_TIMEOUT:-180}"
+# Optional sampling parameters for OpenAI-compatible judges; empty = not sent.
+DSQA_JUDGE_TEMPERATURE = "${DSQA_JUDGE_TEMPERATURE:-}"
+DSQA_JUDGE_MAX_TOKENS = "${DSQA_JUDGE_MAX_TOKENS:-}"
+DSQA_JUDGE_REASONING_EFFORT = "${DSQA_JUDGE_REASONING_EFFORT:-}"
 
 [environment]
 build_timeout_sec = 600.0
