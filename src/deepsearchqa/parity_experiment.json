@@ -12,7 +12,9 @@
     "adapter_pr": [
       "https://github.com/harbor-framework/adapters/pull/127"
     ],
-    "dataset_pr": [],
+    "dataset_pr": [
+      "https://github.com/harbor-framework/harbor-datasets/pull/309"
+    ],
     "parity_pr": [
       "https://huggingface.co/datasets/erin0327/deepsearchqa-parity-experiments"
     ],
@@ -64,7 +66,9 @@
     "adapter_pr": [
       "https://github.com/harbor-framework/adapters/pull/127"
     ],
-    "dataset_pr": [],
+    "dataset_pr": [
+      "https://github.com/harbor-framework/harbor-datasets/pull/309"
+    ],
     "parity_pr": [
       "https://huggingface.co/datasets/erin0327/deepsearchqa-parity-experiments"
     ],

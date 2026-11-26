@@ -154,7 +154,7 @@ Links:
 - Parity agent: https://github.com/ApodexAI/FrontierAgent (commit `0991a7a9f8cb39ad43939aa6fa8a039226a04ef1`)
 - Original-side parity runner: https://github.com/erinwang27y/FrontierAgent/tree/deepsearchqa-parity/deepsearchqa_parity
 - Adapter PR: https://github.com/harbor-framework/adapters/pull/127
-- Dataset PR: TBD
+- Dataset PR: https://github.com/harbor-framework/harbor-datasets/pull/309
 - Parity experiment artifacts: https://huggingface.co/datasets/erin0327/deepsearchqa-parity-experiments (`harborframework/parity-experiments` currently rejects uploads: it is over the Hub's 1,000,000-file limit)
 
 ### Reproduction
